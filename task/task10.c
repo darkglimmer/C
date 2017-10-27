@@ -11,7 +11,7 @@ int main() {
     while (scanf("%d %d",&m,&n)!=EOF) {
         for (i = 0; i < m; i++) {
             for (j = 0; j < n; j++) {
-                scanf("%d", tensu[i][j]);
+                scanf("%d", &tensu[i][j]);
                 sum[i][j] += tensu[i][j];
             }
             printf("%.2f", sum[i][j] / n);
