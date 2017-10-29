@@ -3,7 +3,7 @@
 void bsort(int a[],int n){
     int i,j;
     for (i=0;i<n-1;i++) {
-        for (j = n - 1; j > i; j++) {
+        for (j = n - 1; j > i; j--) {
             if ( fabs(a[j - 1]) < fabs(a[j])) {
                 int temp = a[j];
                 a[j] = a[j - 1];
