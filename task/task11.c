@@ -1,28 +1,37 @@
 #include <stdio.h>
-void bsort(int a[],int n){
-    int i,j;
-    for (i=0;i<n-1;i++) {
-        for (j = n - 1; j>i; j--) {
-            if ( a[j - 1]< a[j]) {
-                int temp = a[j];
-                a[j] = a[j - 1];
-                a[j - 1] = temp;
+
+int main() {
+    int m,n;
+    int i,j,e;
+    int max;
+    int temp;
+    int a[100000] = {0};
+    while(scanf("%d %d",&n,&m)!=EOF&&m<=10) {
+        for (i = 0; i < n; i++) {
+            scanf("%d", &a[i]);
+        }
+        for(i=0;i<m;i++){
+            max = a[i];
+            j=i;
+            for (;j<n; j++){
+                if(a[j]>=max){
+                    max=a[j];
+                    e=j;
+                }
+            }
+            if(i > n-1)
+                break;
+            temp = a[i];
+            a[i] = max;
+            a[e] = temp;
+            if (i!=m-1) {
+                printf("%d ", max);
+            } else {
+                printf("%d\n",max);
             }
         }
     }
-}
-int main() {
-    int m,n;
-    int i,j;
-    int a[100000];
-    scanf("%d %d",&n,&m);
-    for(i=0;i<n;i++) {
-        scanf("%d", &a[i]);
-    }
-    bsort(a,n);
-    printf("%d",a[0]);
-    for(j=1;j<m;j++) {
-        printf(" %d", a[j]);
-    }
     return 0;
+}
+
 }
