@@ -1,5 +1,4 @@
 #include <stdio.h>
-int a[10000];
 void bsort(int a[],int n){
     int i,j;
     for (i=0;i<n-1;i++) {
@@ -15,14 +14,15 @@ void bsort(int a[],int n){
 int main() {
     int m,n;
     int i,j;
-    int a[10000];
+    int a[100000];
     scanf("%d %d",&n,&m);
     for(i=0;i<n;i++) {
         scanf("%d", &a[i]);
     }
     bsort(a,n);
-    for(j=0;j<m;j++) {
-        printf("%d ", a[j]);
+    printf("%d",a[0]);
+    for(j=1;j<m;j++) {
+        printf(" %d", a[j]);
     }
     return 0;
 }
