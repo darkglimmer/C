@@ -1,30 +1,27 @@
 #include <stdio.h>
-void bsort(int a[],int n){
-    int i,j;
-    for(i=0;i<n-1;i++)
-        for(j=n-1;j>i;j--)
-            if(a[j-1]>a[j]){
-                int temp=a[j];
-                a[j]=a[j-1];
-                a[j-1]=temp;
-            }
-}
+
 int main(void) {
+    int max,min;
     int i,n;
-    int a[100];
-    double sum;
+    int a[101];
     while (scanf("%d",&n)!=EOF) {
-        if (n <=2 || n > 100)break;
-        else {
-            for (i = 0; i < n; i++) {
-                scanf("%d", &a[i]);
-                sum = sum + a[i];
-            }
-            break;
+        double sum=0;
+        for (i = 0; i < n; i++) {
+            scanf("%d", &a[i]);
+            sum += a[i];
         }
+        max = a[0];
+        min = a[0];
+        for (i = 0; i < n; i++) {
+            if (a[i] >= max) {
+                max = a[i];
+            }
+            else if (a[i]<=min){
+                min = a[i];
+            }
+        }
+        sum = sum - min - max;
+        printf("%.2f\n",(sum/(n-2)));
     }
-    bsort(a,n);
-    sum=sum-a[0]-a[n-1];
-    printf("%.2f",(double)(sum/(n-2)));
     return 0;
 }
