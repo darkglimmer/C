@@ -1,32 +1,50 @@
-#include <stdio.h>
-#define NUMBER 50
-#define CLASS 5
-int main() {
-    int m,n;
+#include<stdio.h> 
+
+int main(void){
+    int n,m;
     int i,j;
-    int tensu[NUMBER][CLASS];
-    double sum[NUMBER][CLASS];
-    double count[NUMBER][CLASS];
-    int s=0;
-    while (scanf("%d %d",&m,&n)!=EOF) {
-        for (i = 0; i < m; i++) {
-            for (j = 0; j < n; j++) {
-                scanf("%d", &tensu[i][j]);
-                sum[i][j] += tensu[i][j];
-            }
-            printf("%.2f", sum[i][j] / n);
+    int test[50][5];
+    int count;
+	double ave1[50],ave2[5],sum;
+	scanf("%d%d",&n,&m);
+	while(n>0&& n<=50 && m<=5 && m>0){
+		count=0;
+		for(i=0;i<n;i++){
+		  for(j=0;j<m;j++){
+		    scanf("%d",&test[i][j]);
+          }
         }
-        printf("\n");
-        for (j = 0; j < n; j++) {
-            for (i = 0; i < m; i++) {
-                count[i][j] += tensu[i][j];
+		for(i=0;i<n;i++){  
+            sum=0;
+		    for(j=0;j<m;j++){
+                sum+=test[i][j];
+                ave1[i]=sum/m;
             }
-            printf("%.2f", count[i][j] / m);
-            if (tensu[i][j] >= (count[i][j] / m))
-                s++;
+		}
+		for(j=0;j<m;j++){  
+            sum=0;
+            for(i=0;i<n;i++){
+               sum+=test[i][j];
+               ave2[j]=sum/n;
+            }
+		} 
+		for(i=0;i<n;i++){
+            for(j=0;j<m;j++){ 
+                if(test[i][j]<ave1[j]){
+                count++;
+                }
+            } 
         }
-        printf("\n");
-        printf("%d", s);
-    }
-    return 0;
+		
+		for(i=0;i<n;i++){
+            printf("%.2lf ",ave1[i]);
+            printf("\n");
+        }
+	    for(j=0;j<m;j++){
+		    printf("%.2lf ",ave2[j]);
+            printf("\n");
+        }
+		printf("%d\n",count);
+	}
+	return 0;
 }
