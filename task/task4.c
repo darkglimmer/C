@@ -10,9 +10,11 @@ int main() {
             x=y;
             y=i;
         }
-        i=y;
-        y=x%y;
-        x=i;
+        else{
+            i=y;
+            y=x%y;
+            x=i;
+        }
     }while(y!=0);
     printf("两者的最大公因数是%d。",x);
     return 0;
