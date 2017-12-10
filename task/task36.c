@@ -3,7 +3,7 @@
 int main() {
     int T;
     int sum = 0;
-    char a[5];
+    char a[6];
     int y, m, d;
     int maxyear = 9999, maxmonth = 99, maxday = 99, minyear = 0, minmonth = 0, minday = 0;
     char old[5], young[5];
