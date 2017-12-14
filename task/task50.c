@@ -1,3 +1,5 @@
+//不可加abs
+//如果使四周都加上0，那么绝对无法运行
 #include <stdio.h>
 
 int main() {
