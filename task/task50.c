@@ -1,64 +1,45 @@
-#include <stdio.h>
-int M, N, TOL;
-int a[1000][1000];
-int isunique(int q, int p)
+#include<stdio.h>
+#include <stdlib.h>
+int calc(int A[1002][1002],int i,int j,int TOL);
+int main()
 {
-    int r = 1;
-    for(int i = 1; i <= N; i++)
-    {
-        for(int j = 1; j <= M; j++)
-        {
-            if(q == i && p == j)
-                continue;
-            if(a[q][p] == a[i][j])
-                r = 0;
+    int M,N,TOL,i,j,num=0,a=1,b=1,m,n,c;
+    int A[1002][1002]={0};
+    scanf("%d%d%d",&M,&N,&TOL);
+    for(i=1;i<N+1;i++){
+        for(j=1;j<M+1;j++){
+            scanf("%d",&A[i][j]);
         }
     }
-    if(r) {
-        return 1;
-    }
-    else{
-        return 0;
-    }
-}
-int main() {
-    int s = 0;
-    int m = 0, n = 0;
-    int t = 0;
-    int i,j;
-    scanf("%d%d%d", &M, &N, &TOL);
-
-    for(i=0;i<=M+1;i++){
-        a[0][i]=0;//因为是正整数故可以设置边框为0，否则如果输入为负数，就用true或者false判断
-        a[N+1][i]=0;
-    }
-    for(i=0;i<=N+1;i++){
-        a[i][0]=0;
-        a[i][M+1]=0;
-    }
-    for (i = 1; i <= N; ++i) {
-        for (j = 1; j <= M; ++j) {
-            scanf("%d", &a[i][j]);
-        }
-    }
-    for (i = 1; i <= N; ++i) {
-        for (j = 1; j <= M; ++j) {
-            if (isunique(i,j) && (a[i][j] - a[i - 1][j - 1]) > TOL && (a[i][j] - a[i - 1][j]) > TOL && (a[i][j] - a[i - 1][j + 1]) > TOL
-                && (a[i][j] - a[i][j - 1]) > TOL && (a[i][j] - a[i][j + 1]) > TOL && (a[i][j] - a[i + 1][j - 1]) > TOL
-                && (a[i][j] - a[i + 1][j]) > TOL && (a[i][j] - a[i + 1][j + 1]) > TOL) {
-                s = a[i][j];
-                m = i;
-                n = j;
-                t++;
+    for(i=1;i<N+1;i++){
+        for(j=1;j<M+1;j++){
+            if(calc(A,i,j,TOL)==1){
+                c=0;
+                for(m=1;m<N+1;m++){
+                    for(n=1;n<M+1;n++){
+                        if(A[m][n]==A[i][j])
+                            c++;
+                    }
+                }
+                if(c==1){
+                    num++;
+                    a=i;
+                    b=j;
+                }
             }
         }
     }
-    if (t == 1) {
-        printf("(%d, %d): %d", n, m, s);
-    } else if (t == 0) {
+    if(num==0)
         printf("Not Exist");
-    } else {
+    else if(num==1)
+        printf("(%d, %d): %d",b,a,A[a][b]);
+    else
         printf("Not Unique");
-    }
     return 0;
+}
+int calc(int A[1002][1002],int i,int j,int TOL){
+    if(abs(A[i][j]-A[i-1][j-1])>TOL&&abs(A[i][j]-A[i-1][j])>TOL&&abs(A[i][j]-A[i-1][j+1])>TOL&&abs(A[i][j]-A[i][j-1])>TOL&&abs(A[i][j]-A[i][j+1])>TOL&&abs(A[i][j]-A[i+1][j-1])>TOL&&abs(A[i][j]-A[i+1][j])>TOL&&abs(A[i][j]-A[i+1][j+1])>TOL)
+        return 1;
+    else
+        return 0;
 }
